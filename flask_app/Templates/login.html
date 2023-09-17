@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link
+  href="https://fonts.googleapis.com/css?family=Raleway"
+  rel="stylesheet"
+  />
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+  />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}">
+<script>
+  function signuphover (e) {
+    if (e.innerText == `Don't have an account?`) {
+      e.innerText = "Sign Up"
+    }
+    else {
+      e.innerText = `Don't have an account?`
+    }
+    // console.log(e.innerText = "Sign Up")
+    // e.innerText = 'Sign up'
+    return e.innerText
+  }
+</script>
+</head>
+<body>
+  <nav class="navbar bg-dark loginNav">
+    <h1>
+      <a href="/Landing">  <i class="fas fa-code"></i>Dojo Grams</a>
+    </h1>
+  </nav>
+
+  <!-- <section class='loginbody'> -->
+  <section >
+    <div class="logincontainer">
+      <form class="form" action="/Landing/authorize_Login" method = "POST">
+        <div class="form-group">
+        {% for message in get_flashed_messages(category_filter = ['login_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+          <input
+            type = "email"
+            placeholder = "Email Address"
+            name = "email"
+          />
+        </div>
+
+        <div class="form-group">
+        {% for message in get_flashed_messages(category_filter = ['login_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+          <input
+            type = "password"
+            placeholder = "Password"
+            name = "password"
+          />
+        </div>
+        <input type="submit" class="btn btn-primary loginbtn" value="Login"/>
+      </form>
+      <p class="my-1">
+        <a on onmouseover="signuphover(this)" href="/Landing/Register">Don't have an account?</a>
+      </p>
+    </div>
+    
+
+  </section>
+
+</body>
+</html>

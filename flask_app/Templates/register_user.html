@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  href = "https://fonts.googleapis.com/css?family=Raleway"
+  rel = "stylesheet"
+  />
+  <link
+  rel = "stylesheet"
+  href = "https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity = "sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin = "anonymous"
+  />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}">
+  <title>Register User</title>
+  <script>
+    function loginhover (e) {
+      if (e.innerText == `Already have an account?`) {
+        e.innerText = " Sign In"
+      }
+      else {
+        e.innerText = `Already have an account?`
+      }
+      // console.log(e.innerText = "Sign Up")
+      // e.innerText = 'Sign up'
+      return e.innerText
+    }
+  </script>
+</head>
+<body>
+  <nav class="navbar bg-dark loginNav">
+    <h1>
+      <a href="/Landing">  <i class="fas fa-code"></i>Dojo Grams</a>
+    </h1>
+  </nav>
+
+  <section  class = "register">
+    <div class = 'registercontainer'>
+      <p class ="lead"><i class = "fas fa-user"></i> Create Your Account</p>
+      <form action = '/Landing/authorize_user' class = "form" method = "POST">
+
+        <div class ="form-group">
+
+        {% for message in get_flashed_messages(category_filter = ['name_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+
+          <input 
+          type = "text" 
+          placeholder = "Please enter your username" 
+          name = "userName" 
+          />
+        </div>
+
+        <div class = "form-group">
+
+        {% for message in get_flashed_messages(category_filter = ['name_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+
+          <input type = "text" 
+          placeholder = "Please enter your first name" 
+          name = "firstName"
+          />
+        </div>
+
+        <div class = "form-group">
+
+          {% for message in get_flashed_messages(category_filter = ['name_error']): %}
+            <p class="flashMessage">{{message}}</p>
+          {% endfor %}
+
+            <input 
+            type = "text" 
+            placeholder = "Please enter your last name" 
+            name = "lastName" 
+            />
+          </div>
+
+        <div class="form-group">
+        {% for message in get_flashed_messages(category_filter = ['email_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter = ['bad_email_format_error']): %}
+        <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+          <input 
+          type = "email" 
+          placeholder ='Please enter e-mail address'
+          name = "email" 
+        
+          /> 
+        </div>
+
+        <div class="form-group">
+        {% for message in get_flashed_messages(category_filter = ['password_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+          <input
+          type = "password"
+          placeholder ="Please enter password"
+          name = "password"
+
+          />
+        </div>
+
+        <!-- <div class="form-group">
+        {% for message in get_flashed_messages(category_filter = ['password_error']): %}
+          <p class="flashMessage">{{message}}</p>
+        {% endfor %}
+          <input
+            type = "password"
+            placeholder="Please Confirm Password"
+            name = "confirmPassword"
+          />
+          
+        </div> -->
+        <input type="submit" class="btn btn-primary registerbtn" value="Create Account" />
+      </form>
+      
+      <p class = "my-1">
+       <a onmouseenter="loginhover(this)" href ='/Landing/Login'>Already have an account?</a>
+      </p>
+    </div>
+    </section>
+</body>
+</html>
